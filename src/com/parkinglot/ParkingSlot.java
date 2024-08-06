@@ -1,32 +1,41 @@
-class ParkingSlot {
-    private int slotNumber;
+package com.parkinglot;
+
+public class ParkingSlot {
+    private int slotId;
     private ParkingSlotType type;
     private boolean isOccupied;
 
-    public ParkingSlot(int slotNumber, ParkingSlotType type) {
-        this.slotNumber = slotNumber;
+    public ParkingSlot(int slotId, ParkingSlotType type) {
+        this.slotId = slotId;
         this.type = type;
         this.isOccupied = false;
     }
 
-    public boolean isOccupied() {
-        return isOccupied;
-    }
-
-    public void park() {
-        this.isOccupied = true;
-    }
-
-    public void vacate() {
-        this.isOccupied = false;
+    public int getSlotId() {
+        return slotId;
     }
 
     public ParkingSlotType getType() {
         return type;
     }
 
-    public int getSlotNumber() {
-        return slotNumber;
+    public boolean isOccupied() {
+        return isOccupied;
+    }
+
+    public void occupy() {
+        if (!isOccupied) {
+            isOccupied = true;
+        } else {
+            throw new IllegalStateException("Parking slot is already occupied.");
+        }
+    }
+
+    public void vacate() {
+        if (isOccupied) {
+            isOccupied = false;
+        } else {
+            throw new IllegalStateException("Parking slot is already vacant.");
+        }
     }
 }
-
