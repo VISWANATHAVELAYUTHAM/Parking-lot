@@ -1,34 +1,35 @@
+package com.parkinglot;
+
 import java.util.ArrayList;
 import java.util.List;
 
-class ParkingFloor {
+public class ParkingFloor {
     private int floorNumber;
-    private List<ParkingSlot> slots;
+    private List<ParkingSlot> parkingSlots;
 
     public ParkingFloor(int floorNumber) {
         this.floorNumber = floorNumber;
-        this.slots = new ArrayList<>();
-    }
-
-    public void addParkingSlot(ParkingSlot slot) {
-        slots.add(slot);
-    }
-
-    public List<ParkingSlot> getSlots() {
-        return slots;
+        this.parkingSlots = new ArrayList<>();
     }
 
     public int getFloorNumber() {
         return floorNumber;
     }
 
+    public void addParkingSlot(ParkingSlot slot) {
+        parkingSlots.add(slot);
+    }
+
     public ParkingSlot findAvailableSlot(ParkingSlotType type) {
-        for (ParkingSlot slot : slots) {
-            if (!slot.isOccupied() && slot.getType() == type) {
+        for (ParkingSlot slot : parkingSlots) {
+            if (slot.getType() == type && !slot.isOccupied()) {
                 return slot;
             }
         }
         return null;
     }
-}
 
+    public List<ParkingSlot> getParkingSlots() {
+        return parkingSlots;
+    }
+}
